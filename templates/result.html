@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card shadow-sm border-0">
+  <div class="card-body">
+    <h4 class="card-title">Result for {{ filename }}</h4>
+    <p class="lead">Match score</p>
+    <div class="progress mb-3" style="height: 28px;">
+      <div class="progress-bar bg-success" role="progressbar"
+           style="width: {{ score }}%;">{{ score }}%</div>
+    </div>
+    <h5>Suggested missing skills / keywords</h5>
+    {% if missing %}
+      <div>
+        {% for skill in missing[:40] %}
+          <span class="badge bg-warning text-dark m-1">{{ skill }}</span>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="text-success">Great! No major missing keywords found.</p>
+    {% endif %}
+    <a href="{{ url_for('dashboard') }}" class="btn btn-primary mt-3">Analyze another</a>
+  </div>
+</div>
+{% endblock %}
